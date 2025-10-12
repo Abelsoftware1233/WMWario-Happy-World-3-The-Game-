@@ -83,7 +83,7 @@ var MarioMaker = (function() {
       view.style(backToMenuBtn, { display: 'block' });
 
       marioGame.clearInstances();
-      marioGame.init(levelMap, 1); //initiate level 1 of map
+      marioGame.init(levelMap, 0); //initiate level 1 of map
 
       that.hideMainMenu();
       editor.removeEditorScreen();
