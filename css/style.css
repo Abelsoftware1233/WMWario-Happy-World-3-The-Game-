@@ -44,8 +44,6 @@ html {
     /* Verzeker dat er geen storende marges zijn van de oude centrering.
        Flexbox op de body handelt de horizontale en verticale centrering af. */
     margin: 0 auto; 
-    /* VOEG TOE: Stel een maximale breedte in. De media query maakt het kleiner op mobiel. */
-    max-width: 1280px; 
 }
 
 .start-screen {
@@ -393,66 +391,4 @@ html {
   Niet nodig, wordt gecentreerd door body. */
 }
 
-
-/* --- NIEUWE RESPONSIVE AANPASSINGEN VOOR MOBIEL/SMALLE SCHERMEN --- */
-
-/* Deze stijlen worden toegepast wanneer de viewport-breedte 1300px of smaller is. */
-@media screen and (max-width: 1300px) {
-    /* 1. Maak de game-gerelateerde wrappers schaalbaar (vloeibare breedte) */
-    .start-screen, .editor-screen, .game-screen, 
-    .element-wrapper, .levels-wrapper, .btn-wrapper {
-        /* Gebruik 95% van de viewport-breedte om een kleine marge te behouden */
-        width: 95vw; 
-    }
-    
-    /* 2. Pas de score-wrapper aan zodat de tellingen niet buiten beeld vallen */
-    .score-wrapper {
-        width: 95vw; /* Match de breedte van de andere wrappers */
-        padding-left: 10px; /* Reduceer de padding voor meer ruimte */
-        
-        /* Zorg dat de items in de score-wrapper ook goed schalen */
-        .life-count, .coin-score, .level-num, .total-score {
-            width: 20%; /* Verdeel de ruimte gelijkmatiger */
-            padding-left: 20px;
-            font-size: 18px; /* Maak het lettertype iets kleiner */
-        }
-    }
-
-    /* 3. Pas de startscherm knoppen aan zodat ze onder elkaar staan en gecentreerd zijn */
-    .start-btn, .editor-btn, .created-btn {
-        width: 90%; /* Maak de knoppen bijna de volledige breedte */
-        height: 40px; /* Maak ze iets minder hoog */
-        line-height: 40px;
-        font-size: 22px;
-        
-        /* Centreer de knoppen horizontaal, maak ze niet meer absoluut */
-        position: relative; 
-        bottom: initial; 
-        left: initial;
-        display: block; 
-        margin: 10px auto; 
-    }
-
-    /* 4. Fix de "Terug" knop die je niet goed zag */
-    .back-btn {
-        width: 95vw; /* Maak de knop de volledige breedte van de wrapper */
-        margin: 10px auto;
-        display: block !important; /* Forceer 'display: block' om centreren te verzekeren */
-    }
-    
-    /* 5. Zorg dat de elementen in de editor wrapper correct schikken op een smal scherm */
-    .element-wrapper {
-        height: auto; /* Laat de hoogte zich aanpassen aan de inhoud (belangrijk voor wrapping) */
-    }
-    
-    /* 6. Zorg dat de pijlen voor de editor schalen met de container */
-    .right-arrow, .left-arrow {
-        top: 45%; /* Centreer ze verticaal (ongeveer) */
-    }
-
-    /* 7. Zorg ervoor dat de no-maps div ook schaalt */
-    .no-maps {
-        width: 95%;
-        margin: 10px auto;
-    }
-}
+Maak die speelvak iets korter aan de zijkant je ziet Mario niet en de knop om terug te gaan naar half
