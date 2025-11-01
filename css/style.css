@@ -14,18 +14,23 @@ html, body, ul, li {
 }
 
 body {
-    /* --- ACHTERGRONDAFBEELDING INSTELLINGEN: TOEGEVOEGD --- */
-    /* Het pad naar de Super Mario World-afbeelding (CORRECT: 1000009748.jpg) */
+    /* --- VERTICALE & HORIZONTALE CENTRERING VOOR VASTE BREEDTE --- */
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; /* Horizontaal gecentreerd (voor 1280px elementen) */
+    justify-content: center; /* Verticaal gecentreerd */
+    min-height: 100vh; /* Zorgt dat de body de hele hoogte van het scherm inneemt */
+    
+    /* --- ACHTERGRONDAFBEELDING INSTELLINGEN --- */
     background-image: url('../1000009748.jpg'); 
-    background-size: cover; /* Vult de hele pagina */
+    background-size: cover; 
     background-repeat: no-repeat;
     background-position: center top; 
-    background-attachment: fixed; /* Houdt de achtergrond vast */
-    background-color: #222; /* Fallback kleur */
+    background-attachment: fixed; 
+    background-color: #222; 
 
-    /* Horizontaal centreren van de 1280px brede content */
     text-align: center; 
-    overflow-x: hidden; /* Voorkom horizontale scrollbalken door vaste breedte */
+    overflow-x: hidden; 
 }
 
 /* Zorg dat de HTML-tag ook de volledige hoogte heeft */
@@ -33,18 +38,17 @@ html {
     height: 100%;
 }
 
-/* --- SCHERMEN (Centrering en Vaste Breedte behouden) --- */
-/* Zorg ervoor dat alle schermen bovenop de achtergrond komen en gecentreerd zijn */
+/* --- SCHERMEN (De 1280px breedte blijft behouden) --- */
+
 .start-screen, .editor-screen, .game-screen, .score-wrapper, .element-wrapper, .levels-wrapper, .btn-wrapper, .no-maps, .fb-comments {
-    /* Om te centreren is 'margin: 0 auto;' nodig bij een vaste breedte */
-    margin-left: auto !important;
-    margin-right: auto !important;
+    /* Verzeker dat er geen storende marges zijn van de oude centrering.
+       Flexbox op de body handelt de horizontale en verticale centrering af. */
+    margin: 0 auto; 
 }
 
 .start-screen {
   width: 1280px;
   height: 530px;
-  /* margin: 0 auto; <-- Gecentraliseerd via de BODY/nieuwe margin regels */
   border: 1px solid black;
   background: url('../images/start-screen.png');
   position: relative;
@@ -53,7 +57,6 @@ html {
 .editor-screen {
   width: 1280px;
   height: 480px;
-  /* margin: 0 auto; <-- Gecentraliseerd via de BODY/nieuwe margin regels */
   border: 1px solid black;
   background: url('../images/bg.png');
   position: relative;
@@ -68,13 +71,11 @@ html {
   border-top: none;
   background: url('../images/bg.png');
   display: none;
-  /* margin: 0 auto; <-- Gecentraliseerd via de BODY/nieuwe margin regels */
 }
 
 .score-wrapper {
   padding-left: 40px;
   width: 1240px;
-  /* margin: 0 auto; <-- Gecentraliseerd via de BODY/nieuwe margin regels */
   height: 50px;
   display: none;
   border: 1px solid black;
@@ -126,7 +127,6 @@ html {
   width: 1280px;
   height: 130px;
   background: #d2d2d2;
-  /* margin: 0 auto; <-- Gecentraliseerd via de BODY/nieuwe margin regels */
   border: 1px solid black;
   display: none;
 }
@@ -285,7 +285,6 @@ html {
 .levels-wrapper {
   width: 1280px;
   height: 530px;
-  /* margin: 0 auto; <-- Gecentraliseerd via de BODY/nieuwe margin regels */
   border: 1px solid black;
   position: relative;
   overflow: hidden;
@@ -367,7 +366,6 @@ html {
 .btn-wrapper {
   width: 1280px;
   height: 100px;
-  /* margin: 0 auto; <-- Gecentraliseerd via de BODY/nieuwe margin regels */
 }
 
 .no-maps {
@@ -375,7 +373,6 @@ html {
   text-align: center;
   font-family: SuperMario256;
   font-size: 25px;
-  /* margin: 0 auto; <-- Gecentraliseerd via de BODY/nieuwe margin regels */
   color: #ffffff;
   background: #5fb952;
   border: 2px solid black;
@@ -389,6 +386,8 @@ html {
 }
 
 .fb-comments {
-  /* margin: 0 auto; <-- Gecentraliseerd via de BODY/nieuwe margin regels */
+  /* margin-left: auto;
+  margin-right: auto;
+  Niet nodig, wordt gecentreerd door body. */
 }
 
