@@ -1,340 +1,65 @@
-@font-face {
-  font-family: SuperMario256;
-  /* Pas dit pad aan als de mapstructuur is veranderd */
-  src: url('../fonts/SuperMario256.ttf'); 
+/* --- NIEUWE/AANGEPASTE KNOP STIJL --- */
+
+/* Generieke stijl voor de menuknoppen in het startscherm */
+.menu-btn-style {
+    font-family: SuperMario256;
+    font-size: 25px; /* Of een grotere maat voor de menuknoppen */
+    line-height: 50px;
+    text-align: center;
+    width: 250px; /* Pas dit aan naar de gewenste breedte */
+    height: 50px;
+    color: #ffffff; /* Hoofdtekstkleur */
+    border: 4px solid black; /* Dikkere, zwarte rand */
+    box-shadow: 0px 4px 0px 0px #333; /* Een schaduw om het een 3D-effect te geven */
+    margin: 5px auto; /* Centreer en geef ruimte */
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative; /* Voor het positioneren van het herhaalde teksteffect */
 }
 
-/* --- BASIS RESET & GLOBALE PAGINA STIJL --- */
-html, body, ul, li {
-    margin: 0;
-    border: 0;
-    padding: 0;
-    /* Zorgt ervoor dat padding en border in de totale afmeting zitten */
-    box-sizing: border-box; 
-}
-
-body {
-    /* --- VERTICALE & HORIZONTALE CENTRERING VOOR VASTE BREEDTE --- */
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; /* Horizontaal gecentreerd (voor 1280px elementen) */
-    justify-content: center; /* Verticaal gecentreerd */
-    min-height: 100vh; /* Zorgt dat de body de hele hoogte van het scherm inneemt */
-    
-    /* --- ACHTERGRONDAFBEELDING INSTELLINGEN --- */
-    background-image: url('../1000009748.jpg'); 
-    background-size: cover; 
-    background-repeat: no-repeat;
-    background-position: center top; 
-    background-attachment: fixed; 
-    background-color: #222; 
-
-    text-align: center; 
-    overflow-x: hidden; 
-}
-
-/* Zorg dat de HTML-tag ook de volledige hoogte heeft */
-html {
+/* Stijl voor het herhaalde/schaduw-tekst effect: we gebruiken ::before */
+.menu-btn-style::before {
+    content: attr(data-text); /* De tekst komt van een data-attribuut */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100%;
+    line-height: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    text-align: center;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4); /* Lichtere kleur dan de hoofdtekst */
+    /* De kern van het herhalingseffect */
+    text-shadow: 
+        100px 0 0 rgba(255, 255, 255, 0.4), /* Herhaling 1 */
+        200px 0 0 rgba(255, 255, 255, 0.4), /* Herhaling 2 */
+        300px 0 0 rgba(255, 255, 255, 0.4), /* Herhaling 3 */
+        -100px 0 0 rgba(255, 255, 255, 0.4), /* Herhaling -1 (voor links) */
+        -200px 0 0 rgba(255, 255, 255, 0.4); /* Herhaling -2 (voor links) */
+    z-index: 1; /* Zorg ervoor dat de schaduw achter de hoofdtekst staat */
+    overflow: hidden; /* Verberg wat buiten de knop gaat */
+    /* Optioneel: verplaats het iets om het los te maken van de hoofdtekst */
+    /* transform: translateX(2px); */
 }
 
-/* --- SCHERMEN (De 1280px breedte blijft behouden) --- */
 
-.start-screen, .editor-screen, .game-screen, .score-wrapper, .element-wrapper, .levels-wrapper, .btn-wrapper, .no-maps, .fb-comments {
-    /* Verzeker dat er geen storende marges zijn van de oude centrering.
-       Flexbox op de body handelt de horizontale en verticale centrering af. */
-    margin: 0 auto; 
+/* Specifieke kleuren voor de knoppen */
+.level-editor-btn {
+    background-color: #5fb952; /* Groene kleur */
 }
 
-.start-screen {
-  width: 1280px;
-  height: 530px;
-  border: 1px solid black;
-  background: url('../images/start-screen.png');
-  position: relative;
+.start-game-btn {
+    background-color: #e94949; /* Rode kleur */
 }
 
-.editor-screen {
-  width: 1280px;
-  height: 480px;
-  border: 1px solid black;
-  background: url('../images/bg.png');
-  position: relative;
-  overflow: hidden;
-  display: none;
+.saved-levels-btn {
+    background-color: #15a7d9; /* Blauwe kleur */
 }
 
-.game-screen {
-  width: 1280px;
-  height: 480px;
-  border: 1px solid black;
-  border-top: none;
-  background: url('../images/bg.png');
-  display: none;
-}
-
-.score-wrapper {
-  padding-left: 40px;
-  width: 1240px;
-  height: 50px;
-  display: none;
-  border: 1px solid black;
-  border-bottom: none;
-  line-height: 50px;
-  font-size: 20px;
-  background-color: #add1f3;
-  font-family: SuperMario256;
-  color: #ffffff;
-}
-
-.life-count {
-  background: url('../images/mario-head.png') left center no-repeat;
-  width: 100px;
-  float: left;
-  padding-left: 40px;
-}
-
-.coin-score {
-  background: url('../images/coin.png') left center no-repeat;
-  width: 150px;
-  float: left;
-  padding-left: 40px;
-}
-
-.level-num {
-  width: 150px;
-  float: left;
-}
-
-.total-score {
-  float: left;
-}
-.cell {
-  width: 31px;
-  height: 31px;
-  border: 1px solid blue;
-}
-
-.active {
-  width: 31px;
-  height: 31px;
-  border: 1px solid blue;
-  background: red;
-  opacity: 0.5;
-}
-
-.element-wrapper {
-  width: 1280px;
-  height: 130px;
-  background: #d2d2d2;
-  border: 1px solid black;
-  display: none;
-}
-
-.platform {
-  width: 31px;
-  height: 31px;
-  background: url('../images/elements.png') 0 0;
-}
-
-.coin-box {
-  width: 31px;
-  height: 31px;
-  background: url('../images/elements.png') -32px 0;
-}
-
-.power-up-box {
-  width: 31px;
-  height: 31px;
-  background: url('../images/elements.png') -64px 0;
-}
-
-.useless-box {
-  width: 31px;
-  height: 31px;
-  background: url('../images/elements.png') -96px 0;
-}
-
-.flag-pole {
-  width: 31px;
-  height: 31px;
-  background: url('../images/elements.png') -128px 0;
-}
-
-.flag {
-  width: 31px;
-  height: 31px;
-  background: url('../images/elements.png') -160px 0;
-}
-
-.pipe-left {
-  width: 31px;
-  height: 31px;
-  background: url('../images/elements.png') -192px 0;
-}
-
-.pipe-right {
-  width: 31px;
-  height: 31px;
-  background: url('../images/elements.png') -224px 0;
-}
-
-.pipe-top-left {
-  width: 31px;
-  height: 31px;
-  background: url('../images/elements.png') -256px 0;
-}
-
-.pipe-top-right {
-  width: 31px;
-  height: 31px;
-  background: url('../images/elements.png') -288px 0;
-}
-
-.goomba {
-  width: 31px;
-  height: 31px;
-  background: url('../images/enemies.png') 0 0;
-}
-
-.right-arrow {
-  width: 60px;
-  height: 60px;
-  top: 215px;
-  right: 0;
-  background: url('../images/slider-right.png');
-  position: absolute;
-}
-
-.left-arrow {
-  width: 60px;
-  height: 60px;
-  top: 215px;
-  left: 0;
-  background: url('../images/slider-left.png');
-  position: absolute;
-}
-
-.element-wrapper * {
-  margin: 10px;
-  float: left;
-}
-
-.lvl-size {
-  clear: both;
-  float: left;
-  width: 115px;
-  height: 32px;
-  background: url('../images/lvl-size.png');
-  margin-right: 10px;
-}
-
-.grid-small-btn {
-  float: left;
-  width: 64px;
-  height: 32px;
-  background: url('../images/grid-small-btn.png');
-  border: none;
-  margin-right: 10px;
-}
-
-.grid-medium-btn:selected {
-  background: red;
-}
-
-.grid-medium-btn {
-  float: left;
-  width: 96px;
-  height: 32px;
-  background: url('../images/grid-medium-btn.png');
-  border: none;
-  margin-right: 10px;
-}
-
-.grid-large-btn {
-  float: left;
-  width: 128px;
-  height: 32px;
-  background: url('../images/grid-large-btn.png');
-  border: none;
-  margin-right: 10px;
-}
-
-.save-map-btn {
-  float: right;
-  width: 100px;
-  height: 100px;
-  background: url('../images/save-map-btn.png');
-  border: none;
-  border: 2px solid black;
-  margin-right: 10px;
-  margin-top: -35px;
-}
-
-.clear-map-btn {
-  float: right;
-  width: 100px;
-  height: 100px;
-  background: url('../images/clear-map-btn.png');
-  border: none;
-  border: 2px solid black;
-  margin-right: 10px;
-  margin-top: -35px;
-}
-
-.levels-wrapper {
-  width: 1280px;
-  height: 530px;
-  border: 1px solid black;
-  position: relative;
-  overflow: hidden;
-  display: none;
-  background: url('../images/bg.png');
-}
-
-.start-btn {
-  width: 200px;
-  height: 50px;
-  color: #ffffff;
-  background: url('../images/start-btn.png');
-  position: absolute;
-  bottom: 100px;
-  left: 252px;
-  border: 2px solid black;
-}
-
-.editor-btn {
-  width: 200px;
-  height: 50px;
-  background: url('../images/editor-btn.png');
-  position: absolute;
-  bottom: 100px;
-  left: 530px;
-  color: #ffffff;
-  border: 2px solid black;
-}
-
-.created-btn {
-  width: 200px;
-  height: 50px;
-  background: url('../images/saved-btn.png');
-  position: absolute;
-  bottom: 100px;
-  left: 810px;
-  color: #ffffff;
-  border: 2px solid black;
-}
-
-.back-btn {
-  width: 200px;
-  height: 50px;
-  background: url('../images/back-btn.png');
-  color: #ffffff;
-  border: 2px solid black;
-  margin: 10px;
-  display: none;
-}
-
+/* De knop die je al had voor niveau-selectie, mocht je deze nog gebruiken */
 .level-btn {
   font-family: SuperMario256;
   font-size: 25px;
@@ -349,44 +74,4 @@ html {
   text-transform: uppercase;
   font-weight: bold;
   background: #15a7d9;
-}
-
-.delete-all-btn {
-  width: 100px;
-  height: 100px;
-  background: url('../images/delete-all-btn.png');
-  color: #ffffff;
-  border: 2px solid black;
-  margin: 10px;
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-}
-
-.btn-wrapper {
-  width: 1280px;
-  height: 100px;
-}
-
-.no-maps {
-  width: 1000px;
-  text-align: center;
-  font-family: SuperMario256;
-  font-size: 25px;
-  color: #ffffff;
-  background: #5fb952;
-  border: 2px solid black;
-}
-
-.loading-percentage {
-  font-size: 60px;
-  font-family: SuperMario256;
-  text-align: center;
-  padding: 100px;
-}
-
-.fb-comments {
-  /* margin-left: auto;
-  margin-right: auto;
-  Niet nodig, wordt gecentreerd door body. */
 }
