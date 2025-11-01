@@ -15,8 +15,8 @@ html, body, ul, li {
 
 body {
     /* --- ACHTERGRONDAFBEELDING INSTELLINGEN: TOEGEVOEGD --- */
-    /* Het pad naar de Super Mario World-afbeelding */
-    background-image: url('../1000009748.png'); 
+    /* Het pad naar de Super Mario World-afbeelding (CORRECT: 1000009748.jpg) */
+    background-image: url('../1000009748.jpg'); 
     background-size: cover; /* Vult de hele pagina */
     background-repeat: no-repeat;
     background-position: center top; 
