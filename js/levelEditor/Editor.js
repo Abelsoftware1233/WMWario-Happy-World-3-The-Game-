@@ -126,7 +126,11 @@ function Editor() {
       'pipe-right',
       'pipe-top-left',
       'pipe-top-right',
-      'goomba'
+      'goomba',
+      'browser',
+      'piranha',
+      'bullet',
+      'pumpkin',
     ];
     var element;
 
