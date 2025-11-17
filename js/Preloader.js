@@ -1,14 +1,20 @@
-Function Preloader() {
+function Preloader() {
   var view = View.getInstance();
+
   var loadingPercentage;
+
   var imageSources;
   var soundSources;
+
   var that = this;
+
   this.init = function() {
     loadingPercentage = view.create('div');
+
     view.addClass(loadingPercentage, 'loading-percentage');
     view.setHTML(loadingPercentage, '0%');
     view.appendToBody(loadingPercentage);
+
     imageSources = {
       1: 'images/back-btn.png',
       2: 'images/bg.png',
@@ -18,7 +24,7 @@ Function Preloader() {
       6: 'images/delete-all-btn.png',
       7: 'images/editor-btn.png',
       8: 'images/elements.png',
-      9: 'images/enemies.png', // Dit is de originele sprite-sheet
+      9: 'images/enemies.png',
       10: 'images/flag-pole.png',
       11: 'images/flag.png',
       12: 'images/start-screen.png',
@@ -34,31 +40,31 @@ Function Preloader() {
       22: 'images/saved-btn.png',
       23: 'images/slider-left.png',
       24: 'images/slider-right.png',
-      25: 'images/start-btn.png',
-      // --- NIEUWE ENEMIES TOEGEVOEGD ---
-      26: 'pumpkin.png', // Geef Goomba een eigen afbeeldingsbestand
-      27: 'images/browser.png',
-      28: 'images/bullet.png',
-      29: 'images/koopa.png',
-      30: 'images/piranha.png'
-      // ---------------------------------
+      25: 'images/start-btn.png'
     };
+
     that.loadImages(imageSources);
   };
+
   this.loadImages = function(imageSources) {
     var images = {};
     var loadedImages = 0;
     var totalImages = 0;
+
     for (var key in imageSources) {
       totalImages++;
     }
+
     for (var key in imageSources) {
       images[key] = new Image();
       images[key].src = imageSources[key];
+
       images[key].onload = function() {
         loadedImages++;
         percentage = Math.floor(loadedImages * 100 / totalImages);
+
         view.setHTML(loadingPercentage, percentage + '%'); //displaying percentage
+
         if (loadedImages >= totalImages) {
           view.removeFromBody(loadingPercentage);
           that.initMainApp();
@@ -66,11 +72,13 @@ Function Preloader() {
       };
     }
   };
+
   this.initMainApp = function() {
     var marioMakerInstance = MarioMaker.getInstance();
     marioMakerInstance.init();
   };
 }
+
 window.onload = function() {
   var preloader = new Preloader();
   preloader.init();
