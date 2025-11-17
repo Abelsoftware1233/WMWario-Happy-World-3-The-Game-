@@ -40,14 +40,8 @@ function Preloader() {
       22: 'images/saved-btn.png',
       23: 'images/slider-left.png',
       24: 'images/slider-right.png',
-      25: 'images/start-btn.png',
-   .  26: 'images/browser.png',
-      27: 'images/pumpkin.png',
-      28: 'images/koopa.png',
-      29: 'images/bullet.png',
-      30: 'images/piranha.png',
-   
- };
+      25: 'images/start-btn.png'
+    };
 
     that.loadImages(imageSources);
   };
