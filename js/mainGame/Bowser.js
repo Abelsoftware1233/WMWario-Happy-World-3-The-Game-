@@ -42,14 +42,14 @@ function Bowser() {
     }
 
     if (that.state == 'dead') {
-      that.frame = 2; //squashed goomba
+      that.frame = 2; //squashed Bowser
 
       tickCounter++;
       if (tickCounter >= 60) {
         that.frame = 4;
       }
     } else if (that.state == 'deadFromBullet') {
-      //falling goomba
+      //falling Bowser
       that.frame = 3;
       that.velY += gravity;
       that.y += that.velY;
