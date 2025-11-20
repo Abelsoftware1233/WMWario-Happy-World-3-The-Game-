@@ -42,7 +42,7 @@ function Enemy() {
     }
 
     if (that.state == 'dead') {
-      that.frame = 2; //squashed goomba
+      that.frame = 2; //squashed bowser
 
       tickCounter++;
       if (tickCounter >= 60) {
