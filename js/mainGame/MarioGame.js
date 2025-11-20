@@ -25,8 +25,7 @@ function MarioGame() {
   var powerUps;
   var bullets;
   var bulletFlag = false;
-  var bowser;
-
+  
   var currentLevel;
 
   var animationID;
