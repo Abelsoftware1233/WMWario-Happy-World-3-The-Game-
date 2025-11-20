@@ -126,8 +126,7 @@ function Editor() {
       'pipe-right',
       'pipe-top-left',
       'pipe-top-right',
-      'goomba',
-      'bowser'
+      'goomba'
     ];
     var element;
 
