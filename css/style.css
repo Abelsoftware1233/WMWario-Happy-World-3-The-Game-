@@ -158,11 +158,6 @@
   height: 31px;
   background: url('../images/enemies.png') 0 0;
 }
-.Bowser {
-  width: 40px;
-  height: 34px;
-  background: url('../images/Bowser.png') 0 0;
-}
 
 .right-arrow {
   width: 60px;
